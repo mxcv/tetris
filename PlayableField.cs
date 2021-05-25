@@ -1,5 +1,4 @@
 ﻿using System;
-using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -8,7 +7,7 @@ namespace Tetris
 	/// <summary>
 	/// Field with movable <see cref="Tetromino">tetrominoes</see>.
 	/// </summary>
-	class PlayableField : Field, INotifyPropertyChanged
+	class PlayableField : Field
 	{
 		public int Score
 		{
@@ -18,7 +17,7 @@ namespace Tetris
 				if (score != value)
 				{
 					score = value;
-					OnPropertyChanged(nameof(Score));
+					ScoreChanged?.Invoke(this, EventArgs.Empty);
 				}
 			}
 		}
@@ -30,7 +29,7 @@ namespace Tetris
 				if (nextTetromino != value)
 				{
 					nextTetromino = value;
-					OnPropertyChanged(nameof(NextTetromino));
+					NextTetrominoChanged?.Invoke(this, EventArgs.Empty);
 				}
 			}
 		}
@@ -121,14 +120,14 @@ namespace Tetris
 			catch (OverflowException)
 			{
 				timer.Stop();
-				MessageBox.Show("Game over! Your score: " + Score);
+				Overflowed?.Invoke(this, EventArgs.Empty);
 				timer.Start();
 				Clear();
 			}
 		}
 
-		public event PropertyChangedEventHandler PropertyChanged;
-		public void OnPropertyChanged(string propertyName) =>
-			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+		public event EventHandler ScoreChanged;
+		public event EventHandler NextTetrominoChanged;
+		public event EventHandler Overflowed;
 	}
 }
