@@ -134,7 +134,6 @@ namespace Tetris
 			this.Controls.Add(this.mainPictureBox);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
 			this.MaximizeBox = false;
-			this.MinimizeBox = false;
 			this.Name = "TetrisForm";
 			this.Text = "Tetris";
 			((System.ComponentModel.ISupportInitialize)(this.mainPictureBox)).EndInit();
