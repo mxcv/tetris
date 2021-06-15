@@ -7,7 +7,7 @@ namespace Tetris
 	/// <summary>
 	/// Field with movable <see cref="Tetromino">tetrominoes</see>.
 	/// </summary>
-	class PlayableField : Field
+	class GameField : Field
 	{
 		public int Score
 		{
@@ -39,7 +39,7 @@ namespace Tetris
 		private Random random;
 		private Timer timer;
 		private Tetromino tetromino, nextTetromino;
-		public PlayableField(PictureBox pictureBox, Size size, Form form, Random random) : base(pictureBox, size)
+		public GameField(PictureBox pictureBox, Size size, int tileWidth, Form form, Random random) : base(pictureBox, size, tileWidth)
 		{
 			this.form = form;
 			this.random = random;

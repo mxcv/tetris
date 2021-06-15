@@ -6,7 +6,7 @@ namespace Tetris
 {
 	public partial class TetrisForm : Form
 	{
-		private PlayableField mainField;
+		private GameField mainField;
 		private Field previewField;
 		public TetrisForm()
 		{
@@ -19,8 +19,8 @@ namespace Tetris
 				mainField.Clear();
 			};
 
-			previewField = new Field(previewPictureBox, new Size(Tetromino.MaxSize.Width + 2, Tetromino.MaxSize.Height + 2));
-			mainField = new PlayableField(mainPictureBox, new Size(10, 20), this, new Random());
+			previewField = new Field(previewPictureBox, new Size(Tetromino.MaxSize.Width + 2, Tetromino.MaxSize.Height + 2), 30);
+			mainField = new GameField(mainPictureBox, new Size(10, 20), 30, this, new Random());
 
 			mainField.ScoreChanged += (s, e) => {
 				scoreLabel.Text = mainField.Score.ToString();
